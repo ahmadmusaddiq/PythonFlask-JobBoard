@@ -29,6 +29,10 @@ def close_connection(exception):
     if connection is not None:
         connection.close()
 
+@app.route('/job/<job_id>')
+def job(job_id):
+    return render_template('static', 'job.html')
+
 @app.route('/')
 @app.route('/jobs')
 def jobs():
