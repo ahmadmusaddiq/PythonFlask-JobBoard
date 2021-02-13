@@ -1,5 +1,6 @@
-from flask import Flask, render_template, g
 import sqlite3
+import datetime
+from flask import Flask, render_template, g, request
 
 PATH = 'db/jobs.sqlite'
 
@@ -52,6 +53,6 @@ def employer(employer_id):
                            'ON employer.id = review.employer_id WHERE employer.id = ?', [employer_id])
     return render_template('employer.html', employer=employer, jobs=jobs, reviews=reviews)
 
-@app.route('/employer/<employer_id>/review', methods=['GET', 'POST'])
+@app.route('/employer/<employer_id>/review', methods=('GET', 'POST'))
 def review(employer_id):
     return render_template('review.html', employer_id=employer_id)
